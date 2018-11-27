@@ -1,0 +1,94 @@
+<div class="container-fluid" >
+  <div class="row bg-dark" style="height:50px;font-size: 42px">
+    <div class="col-3 text-light make-left" >
+      {{title}}
+    </div>
+    <div class="col-6 make-center">
+      <input [(ngModel)]="post" type="text" class="form-control " placeholder="say something ">
+      <button (click)="postHere()" type="button" class="ml-1 btn btn-secondary "> post</button>
+      
+    </div>
+   <div class="col-3">
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container-fluid" *ngIf="postList.length==0">
+  <div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6 h3 rounded bg-secondary mt-1 make-center text-light" style="height:100px;">
+      No post available
+      </div>
+      <div class="col-3">
+      
+        </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container-fluid" *ngIf="postList.length > 0">
+<div class="row" *ngFor="let item of postList"style="min-height:100px;">
+  <div class="col-3"></div>
+  <div class="col-6">
+      <div class="card mt-1">
+        <div class="card-body make-center ">
+          <h5 class="card-title">
+            {{item.post}}
+          </h5>
+        </div>
+
+        <div class="card-footer">
+          <a href="#" (click)="likeCount(item)" class="btn btn-secondary">Like
+         {{item.like}} 
+        </a>
+
+        <a href="#" (click)="dislikeCount(item)" class="btn btn-secondary ml-2">dislike
+          {{item.dislike}}
+        </a>
+
+        <a href="#" (click)="deletePost(item)" class="btn btn-secondary ml-2">Delete post
+            {{item.delete}}
+          </a>
+
+          <input [(ngModel)]="comment" type="text" class="form-control " placeholder="write comment"> 
+         <a href="#" (click)="commenthere(item)" type="button" class="ml-1 btn btn-secondary "> comment
+        </a>
+
+         <div class="container-fluid" >
+            <div class="row" *ngFor="let i of item.commentList">
+              <div class="col-6 make-center"> 
+                  <a href="#" (click)="deleteComment(item,i)" class="btn btn-secondary ml-2">Delete comment
+                      {{item.delete}}
+                    </a>
+                    <a href="#" (click)="editComment(item)" class="btn btn-secondary ml-2">edit
+                        {{item.edit}}
+                      </a>
+              </div>
+              <div class="col-6">
+                  <div class="card mt-1">
+                    <div class="card-body make-center " style="height:10px;">
+                      <h5 class="card-title" >
+                        {{i}}
+                      </h5>
+                    </div>
+
+
+          </div>
+      </div>
+
+
+
+    </div>
+    <div class="col-3">
+    </div> 
+</div>
+</div>
