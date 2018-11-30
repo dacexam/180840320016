@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~animate.css/animate.css";
+
+.make-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.make-left{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.nav-bar{
+    background: rgb(4,4,61);
+    height: 70px;
+    transition: 600ms;
+}
+.nav-bar:hover{
+    height: 85px;
+}
+
+.fontify{
+    color:White;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.name{
+    color: blue;
+    font-size: 20px;
+}
+
+.beautify{
+    box-shadow: 0 0  5px  black;
+}
+.cb{
+    font-size: 25px;
+    font-family: cursive;
+}

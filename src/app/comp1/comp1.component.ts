@@ -1,55 +1,60 @@
-
 import { Component, OnInit } from '@angular/core';
-import { isNgTemplate } from '@angular/compiler';
+import { isEmbeddedView } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-comp1',
   templateUrl: './comp1.component.html',
   styleUrls: ['./comp1.component.css']
 })
-export class Comp1Component  {
-  title = 'Aakash';
-  post = '';
-  postList = [];
-  comment = '';
-
-  
-  postHere() {
-
-    const postObject = {};
-    postObject['like'] = 0;
-    postObject['dislike'] = 0;
-    postObject['post'] = this.post;
-    postObject['commentList'] = [];
-    this.postList.splice(0, 0, postObject);
-
-    this.post = '';
+export class Comp1Component {
+title="DACBOOK";
+name="Ajinkya Kamble";
+post = '';
+postList = [];
+  posthere(){
+    if(this.post.length>0){
+      const postObject={}
+      postObject['like']=0;
+      postObject['dislike']=0;
+      postObject['commentcount']=0;
+      postObject['post']=this.post;
+      postObject['commentList']=[];
+      postObject['d']=new Date();
+      this.postList.splice(0,0,postObject);
+    this.post='';
+    }
   }
-
-  commenthere(item){
-  const index=this.postList.indexOf(item);
-    item.commentList.splice(index,0,this.comment);
-    this.comment = '';
-  }
-
-  likeCount(item) {
+  like(item){
     item.like += 1;
   }
-
-  dislikeCount(item) {
+  dislike(item){
     item.dislike += 1;
   }
-
-  deletePost(item){
-    let index=this.postList.indexOf(item);
-    this.postList.splice(index,1);
-  } 
-
-  deleteComment(item,j){
-    let index=item.commentList.indexOf(j);
-
-    item.commentList.splice(index,1);
+  commenthere(item){
+    if(item.comment.length>0){
+      item.commentcount += 1;
+      item.commentList.splice(0,0,item.comment);
+    item.comment='';
+    }
+  }
+  edit(item){
+    if(this.post.length>0){
+      item.post=this.post;
+    this.post='';
+    }
+  }
+  del(item){
+    this.postList.splice(item,1);
+  }
+  delcomment(item,com){
+    item.commentcount -= 1;
+    item.commentList.splice(com,1);
+  }
+  editcomment(item,com){
+    if(item.comment.length>0){
+      var a = item.commentList.indexOf(com);
+      item.commentList[a]=item.comment;
+    item.comment = '';
+    }
   }
 }
-
-
