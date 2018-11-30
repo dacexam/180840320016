@@ -1,0 +1,76 @@
+<div class="container-fluid sticky-top">
+  <div class="row bg-dark" style="height:60px">
+    <div class="col-3 make-center text-light h5 mb-0">
+      {{title}}
+    </div>
+    <div class="col-6 make-center mt-1">
+      <input  [(ngModel)]="post" type="text" class="form-control form-control-lg">
+      <button (click)="postHere()" type="button" class="btn btn-secondary btn-sm ml-2">
+        Add Post
+      </button>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid" *ngIf="postList.length > 0">
+  <div class="row mt-1" *ngFor="let item of postList">
+    <div class="col-3"></div>
+    <div class="col-6" >
+      <div class="card">
+        <div class="card-body text-muted" style="min-height:100px" >
+          <h1 class="card-title make-center">
+            {{item.post}}
+
+          </h1>
+
+        </div>
+        
+        
+        
+
+        <div class="card-footer text-centralized">
+          <a href="#" (click)=likecount(item) class="btn btn-secondary btn-sm ">Like
+            <span class="badge badge-light">{{item.like}}</span>
+          </a>
+          <a href="#" (click)=dislikecount(item) class="btn btn-secondary btn-sm ml-2">Dislike
+              <span class="badge badge-light">{{item.dislike}}</span>
+            </a>
+            <button (click)="delete(item)" type="button" class="btn btn-secondary btn-sm ml-2">
+                Delete Post
+              </button>
+
+              <input  [(ngModel)]="this.editpost" type="text" class="form-control form-control-lg mt-2">
+      <button (click)="edit(item)" type="button" class="btn btn-secondary btn-sm mt-1">
+        Edit Post
+      </button>
+
+      <input  [(ngModel)]="comment" type="text" class="form-control form-control-lg">
+      <button (click)="comments()" type="button" class="btn btn-secondary btn-sm ml-2">
+        comment/Edit
+      </button>
+
+              
+        </div>
+      </div>
+
+      
+    </div>
+    <div class="col-3"></div>
+  </div>
+
+</div>
+
+<div class="container fluid" *ngIf="postList.length==0">
+  <div  class="row ">
+    <div class="col-3"></div>
+    <div class="col-6 h1 text-light bg-dark  make-center rounded mt-1" style="min-height: 100px" >
+      No Post Available
+
+    </div>
+  </div>
+
+</div>
